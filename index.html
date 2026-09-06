@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Threads | Back to School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0B0B0C;
+    --ink:#141416;
+    --white:#FAFAFA;
+    --grey:#8C8C94;
+    --line:rgba(255,255,255,.12);
+    --blue:#1E5CFF;
+    --lime:#C8FF3D;
+    --orange:#FF5E1A;
+    --pink:#FF2E7E;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black); color:var(--white);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Archivo Black', sans-serif; text-transform:uppercase; line-height:.95;}
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block;}\n  .hero-art img{width:100%;height:100%;object-fit:cover;border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.45);transform:rotate(3deg);}\n  .product-art img{width:100%;height:100%;object-fit:cover;}\n  .about-art img{width:100%;height:420px;object-fit:cover;border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.4);}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+  .accent{color:var(--lime);}
+  .accent-blue{color:var(--blue);}
+
+  /* ---------- NAV ---------- */
+  .site-nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    background:rgba(11,11,12,.85); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand .mark{width:32px; height:32px; color:var(--lime);}
+  .brand .word{font-family:'Archivo Black'; font-size:16px; letter-spacing:.03em;}
+  .nav-links{display:flex; gap:30px; font-size:14px; font-weight:600; color:#C9C9CE;}
+  .nav-links a:hover{color:var(--white);}
+  .nav-actions{display:flex; align-items:center; gap:20px;}
+  .icon-btn{width:20px; height:20px; color:var(--white); cursor:pointer; position:relative;}
+  .cart-count{
+    position:absolute; top:-8px; right:-10px; background:var(--lime); color:var(--black);
+    font-size:10px; font-weight:800; width:16px; height:16px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .btn-outline{
+    border:1px solid var(--line); padding:9px 18px; border-radius:6px;
+    font-size:12.5px; font-weight:700; letter-spacing:.03em; cursor:pointer;
+    background:transparent; color:var(--white);
+  }
+  .btn-outline:hover{border-color:var(--white);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; padding:110px 32px 90px;
+    background:
+      radial-gradient(circle at 85% 10%, rgba(30,92,255,.3), transparent 45%),
+      linear-gradient(160deg,#0B0B0C 0%, #141416 60%, #0B0B0C 100%);
+    display:flex; align-items:center; justify-content:space-between; gap:40px;
+    overflow:hidden;
+  }
+  .hero-copy{max-width:560px; z-index:2;}
+  .hero-eyebrow{
+    display:inline-block; background:var(--lime); color:var(--black);
+    font-family:'Archivo Black'; font-size:12.5px; padding:7px 14px;
+    transform:rotate(-2deg); margin-bottom:24px;
+  }
+  .hero h1{font-size:64px; margin-bottom:20px;}
+  .hero-sub{font-size:17px; color:#C9C9CE; line-height:1.6; margin-bottom:34px; max-width:440px;}
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--lime); color:var(--black); font-family:'Archivo Black';
+    font-size:14px; padding:16px 26px; border-radius:8px; letter-spacing:.02em;
+    border:none; cursor:pointer;
+  }
+  .scroll-hint{margin-top:46px; font-size:11px; letter-spacing:.08em; color:var(--grey); font-weight:600;}
+  .hero-art{position:relative; width:420px; height:460px; flex-shrink:0; z-index:1;}
+  .hero-art svg{width:100%; height:100%;}
+  .halftone-corner{position:absolute; top:-40px; right:-40px; opacity:.7;}
+
+  /* ---------- FEATURES ---------- */
+  .features{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .feature{
+    background:var(--black); padding:34px 28px; display:flex; flex-direction:column; gap:12px;
+  }
+  .feature .icon{width:26px; height:26px; color:var(--lime);}
+  .feature h3{font-family:'Inter'; text-transform:none; font-weight:700; font-size:15px;}
+  .feature p{font-size:13px; color:var(--grey); line-height:1.5;}
+
+  /* ---------- SECTION HEADER ---------- */
+  .section{padding:100px 32px;}
+  .section-tag{font-size:12.5px; font-weight:700; letter-spacing:.08em; color:var(--grey); margin-bottom:14px;}
+  .section-title{font-size:44px; margin-bottom:16px;}
+  .section-desc{font-size:15.5px; color:var(--grey); max-width:480px; line-height:1.6; margin-bottom:56px;}
+
+  /* ---------- COLLECTION ---------- */
+  .collection-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
+  .product-card{
+    background:var(--ink); border:1px solid var(--line); border-radius:14px;
+    overflow:hidden; display:flex; flex-direction:column;
+  }
+  .product-art{
+    position:relative; height:230px; display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle at 60% 20%, rgba(255,255,255,.05), transparent 60%);
+  }
+  .product-art svg{width:140px; height:160px;}
+  .badge{
+    position:absolute; top:14px; left:14px; font-family:'Archivo Black'; font-size:10.5px;
+    padding:5px 10px; border-radius:999px; letter-spacing:.03em;
+  }
+  .badge.new{background:var(--blue); color:var(--white);}
+  .badge.best{background:var(--orange); color:var(--white);}
+  .badge.limited{background:var(--pink); color:var(--white);}
+  .product-info{padding:18px 20px 22px; display:flex; flex-direction:column; gap:6px;}
+  .product-info h3{font-family:'Inter'; text-transform:none; font-weight:700; font-size:15.5px;}
+  .product-info .color{font-size:12.5px; color:var(--grey);}
+  .product-info .price{font-family:'Archivo Black'; font-size:18px; margin:8px 0 14px;}
+  .product-actions{display:flex; gap:8px;}
+  .btn-mini-primary,.btn-mini-outline{
+    flex:1; padding:10px 0; border-radius:6px; font-size:11.5px; font-weight:800;
+    letter-spacing:.03em; text-align:center; cursor:pointer; border:1px solid var(--line);
+    background:transparent; color:var(--white);
+  }
+  .btn-mini-primary{background:var(--lime); color:var(--black); border-color:var(--lime);}
+
+  /* ---------- ABOUT ---------- */
+  .about{display:flex; align-items:center; gap:60px;}
+  .about-art{width:380px; flex-shrink:0; position:relative;}
+  .about-copy{max-width:520px;}
+  .about-copy p{font-size:15.5px; color:#C9C9CE; line-height:1.7; margin-bottom:18px;}
+  .link-cta{display:inline-flex; align-items:center; gap:8px; font-family:'Archivo Black'; font-size:13px; color:var(--lime); margin-top:12px;}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    text-align:center; padding:100px 32px;
+    background:linear-gradient(120deg, #0B0B0C, #17181c);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .cta-band .section-tag{justify-content:center; display:block;}
+  .cta-band h2{font-size:50px; margin:14px 0 34px;}
+
+  /* ---------- MARKETING ---------- */
+  .marketing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .marketing-card{
+    background:var(--ink); border:1px solid var(--line); border-radius:14px; padding:26px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .marketing-card .num{font-family:'Archivo Black'; color:var(--lime); font-size:13px;}
+  .marketing-card h3{font-family:'Inter'; text-transform:none; font-weight:700; font-size:16px;}
+  .marketing-card p{font-size:13px; color:var(--grey); line-height:1.5;}
+  .marketing-card .dims{font-size:11.5px; color:var(--grey); font-weight:700; letter-spacing:.03em;}
+  .marketing-card .view{margin-top:auto; font-family:'Archivo Black'; font-size:12.5px; color:var(--white);}
+
+  /* ---------- NEWSLETTER / CONTACT ---------- */
+  .newsletter{
+    background:var(--ink); border-radius:20px; margin:0 32px 100px; padding:60px 50px;
+    display:flex; align-items:center; justify-content:space-between; gap:40px;
+  }
+  .newsletter h2{font-size:32px; margin-bottom:10px;}
+  .newsletter p{font-size:14px; color:var(--grey); max-width:380px;}
+  .newsletter-form{display:flex; gap:10px; flex-shrink:0;}
+  .newsletter-form input{
+    width:260px; padding:14px 16px; border-radius:8px; border:1px solid var(--line);
+    background:var(--black); color:var(--white); font-size:14px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line); padding:60px 32px 30px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; margin-bottom:50px;}
+  .footer-brand .word{font-family:'Archivo Black'; font-size:17px; margin:14px 0 10px;}
+  .footer-brand p{font-size:13px; color:var(--grey); line-height:1.6; max-width:280px;}
+  footer h4{font-size:12px; letter-spacing:.06em; color:var(--grey); margin-bottom:16px;}
+  footer ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  footer ul a{font-size:14px; color:#C9C9CE;}
+  footer ul a:hover{color:var(--white);}
+  .footer-bottom{
+    border-top:1px solid var(--line); padding-top:24px; text-align:center;
+    font-size:11.5px; color:var(--grey); letter-spacing:.03em;
+  }
+
+  /* ---------- MODALS & DRAWER ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,.6); backdrop-filter:blur(3px);
+    display:none; align-items:center; justify-content:center; z-index:100;
+  }
+  .overlay.active{display:flex;}
+  .modal{
+    background:var(--ink); border:1px solid var(--line); border-radius:16px;
+    width:380px; padding:36px 32px; position:relative;
+  }
+  .modal .close{position:absolute; top:18px; right:20px; cursor:pointer; color:var(--grey); font-size:18px;}
+  .modal h2{font-size:26px; margin-bottom:8px;}
+  .modal .sub{font-size:13px; color:var(--grey); margin-bottom:24px;}
+  .modal label{display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--grey); margin-bottom:6px;}
+  .modal .field{width:100%; padding:12px 14px; margin-bottom:16px; border-radius:7px; border:1px solid var(--line); background:var(--black); color:var(--white); font-size:14px;}
+  .modal .switch{margin-top:18px; font-size:13px; color:var(--grey); text-align:center;}
+  .modal .switch span{color:var(--lime); font-weight:700; cursor:pointer;}
+  .size-options{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:22px;}
+  .size-opt{
+    border:1px solid var(--line); border-radius:7px; padding:10px 0; text-align:center;
+    font-size:12.5px; font-weight:700; cursor:pointer;
+  }
+  .size-opt.selected{background:var(--lime); color:var(--black); border-color:var(--lime);}
+
+  .cart-drawer{
+    position:fixed; top:0; right:-420px; width:400px; height:100%; background:var(--ink);
+    border-left:1px solid var(--line); z-index:110; transition:right .35s ease;
+    display:flex; flex-direction:column; padding:30px 26px;
+  }
+  .cart-drawer.active{right:0;}
+  .cart-header{display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;}
+  .cart-items{flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:14px;}
+  .cart-empty{color:var(--grey); font-size:14px; text-align:center; margin-top:60px;}
+  .cart-item{display:flex; gap:12px; border-bottom:1px solid var(--line); padding-bottom:14px;}
+  .cart-item svg{width:44px; height:50px; flex-shrink:0; color:var(--lime);}
+  .cart-item .name{font-size:13.5px; font-weight:700;}
+  .cart-item .meta{font-size:11.5px; color:var(--grey);}
+  .cart-total{display:flex; justify-content:space-between; font-family:'Archivo Black'; font-size:16px; padding-top:20px; border-top:1px solid var(--line); margin-top:16px;}
+
+  .toast{
+    position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--lime); color:var(--black); font-family:'Archivo Black'; font-size:13px;
+    padding:14px 26px; border-radius:999px; z-index:200; opacity:0; pointer-events:none;
+    transition:all .3s ease;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  @media(max-width:980px){
+    .nav-links{display:none;}
+    .hero{flex-direction:column; text-align:center;}
+    .hero-copy{max-width:100%;}
+    .hero-sub{margin-left:auto; margin-right:auto;}
+    .features{grid-template-columns:repeat(2,1fr);}
+    .collection-grid{grid-template-columns:repeat(2,1fr);}
+    .about{flex-direction:column;}
+    .marketing-grid{grid-template-columns:1fr;}
+    .newsletter{flex-direction:column; text-align:center;}
+    .newsletter-form{width:100%;}
+    .newsletter-form input{width:100%;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- PREMIUM PHOTO DIRECTION ---------- */
+  :root{
+    --black:#08090A;
+    --ink:#111316;
+    --white:#F7F7F4;
+    --grey:#92959D;
+    --line:rgba(255,255,255,.10);
+  }
+
+  body{
+    background:
+      radial-gradient(circle at 80% -10%, rgba(30,92,255,.10), transparent 30%),
+      var(--black);
+  }
+
+  .site-nav{
+    padding:16px 40px;
+    background:rgba(8,9,10,.72);
+    backdrop-filter:blur(18px) saturate(140%);
+    box-shadow:0 10px 40px rgba(0,0,0,.18);
+  }
+
+  .brand .mark{filter:drop-shadow(0 0 10px rgba(200,255,61,.18));}
+  .brand-logo-img{width:44px;height:32px;object-fit:cover;display:block;}
+
+  .hero{
+    min-height:690px;
+    padding:86px 6vw 80px;
+    background:
+      linear-gradient(90deg, rgba(8,9,10,.98) 0%, rgba(8,9,10,.82) 42%, rgba(8,9,10,.12) 100%),
+      radial-gradient(circle at 80% 45%, rgba(30,92,255,.18), transparent 35%);
+    gap:7vw;
+  }
+
+  .hero-copy{max-width:600px;}
+  .hero h1{
+    font-size:clamp(58px,7vw,94px);
+    letter-spacing:-.045em;
+    text-shadow:0 12px 40px rgba(0,0,0,.28);
+  }
+  .hero-sub{font-size:16px; max-width:500px; color:#BFC1C7;}
+  .hero-eyebrow{
+    border-radius:3px;
+    box-shadow:8px 8px 0 rgba(30,92,255,.30);
+  }
+
+  .photo-hero{
+    width:min(500px,44vw);
+    height:550px;
+    position:relative;
+    border-radius:24px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 35px 90px rgba(0,0,0,.48);
+    transform:rotate(1.2deg);
+  }
+  .photo-hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.48));
+    pointer-events:none;
+  }
+  .photo-hero img{
+    width:100%; height:100%; object-fit:cover;
+    object-position:center;
+    transition:transform .7s ease;
+  }
+  .photo-hero:hover img{transform:scale(1.04);}
+  .photo-label{
+    position:absolute; z-index:2; left:22px; bottom:20px;
+    font:11px 'Archivo Black'; letter-spacing:.1em;
+    color:#fff; background:rgba(0,0,0,.55);
+    padding:10px 12px; border:1px solid rgba(255,255,255,.2);
+    backdrop-filter:blur(10px);
+  }
+
+  .features{
+    background:rgba(255,255,255,.06);
+  }
+  .feature{
+    padding:38px 30px;
+    background:rgba(8,9,10,.86);
+  }
+
+  .section{padding:120px 32px;}
+  .section-title{font-size:clamp(38px,4vw,58px); letter-spacing:-.035em;}
+  .collection-grid{gap:20px;}
+
+  .product-card{
+    background:#101214;
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:18px;
+    box-shadow:0 18px 50px rgba(0,0,0,.16);
+    transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+  .product-card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(200,255,61,.30);
+    box-shadow:0 28px 65px rgba(0,0,0,.30);
+  }
+  .product-art{
+    height:330px;
+    background:#181A1D;
+    overflow:hidden;
+  }
+  .product-art img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .6s cubic-bezier(.2,.7,.2,1);
+  }
+  .product-card:hover .product-art img{transform:scale(1.055);}
+  .product-info{padding:20px 20px 22px;}
+  .product-info h3{font-size:16px;}
+  .product-info .price{font-size:20px;}
+
+  .badge{
+    z-index:3;
+    box-shadow:0 7px 20px rgba(0,0,0,.24);
+  }
+
+  .about{
+    align-items:stretch;
+    gap:90px;
+  }
+  .about-art{
+    width:min(470px,42vw);
+    min-height:540px;
+  }
+  .photo-about{
+    border-radius:24px;
+    overflow:hidden;
+    position:relative;
+    border:1px solid rgba(255,255,255,.11);
+    box-shadow:0 30px 75px rgba(0,0,0,.34);
+  }
+  .photo-about img{
+    width:100%; height:100%; min-height:540px;
+    object-fit:cover;
+    object-position:center;
+  }
+  .photo-about::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.58));
+  }
+  .about-stamp{
+    position:absolute; z-index:2; bottom:22px; left:22px;
+    font:12px/1.15 'Archivo Black'; letter-spacing:.08em;
+    color:var(--lime);
+  }
+  .about-copy{padding:50px 0;}
+  .about-copy p{font-size:16px; color:#C5C7CD;}
+
+  .cta-band{
+    padding:125px 32px;
+    background:
+      linear-gradient(rgba(8,9,10,.78),rgba(8,9,10,.92)),
+      url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1800&q=80') center/cover;
+    background-attachment:fixed;
+  }
+  .cta-band h2{font-size:clamp(42px,5vw,68px);}
+
+  .marketing-card{
+    border-radius:18px;
+    background:linear-gradient(145deg,#15171A,#0E1012);
+    transition:transform .3s ease,border-color .3s ease;
+  }
+  .marketing-card:hover{transform:translateY(-5px);border-color:rgba(200,255,61,.28);}
+  .marketing-card{
+    padding:0;
+    overflow:hidden;
+  }
+  .marketing-card .deliverable-thumb{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    display:block;
+    background:#181A1D;
+  }
+  .marketing-card .deliverable-body{
+    padding:22px 26px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    min-height:210px;
+  }
+
+
+  .newsletter{
+    margin:0 32px 100px;
+    padding:70px 60px;
+    border:1px solid rgba(255,255,255,.08);
+    background:
+      linear-gradient(100deg,rgba(17,19,22,.96),rgba(17,19,22,.82)),
+      url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=80') center/cover;
+    box-shadow:0 30px 80px rgba(0,0,0,.22);
+  }
+
+  .cart-item img.cart-thumb{
+    width:44px; height:50px; object-fit:cover;
+    border-radius:6px; flex-shrink:0;
+  }
+
+  @media(max-width:980px){
+    .site-nav{padding:15px 20px;}
+    .hero{padding:70px 24px; min-height:auto;}
+    .photo-hero{width:min(500px,100%); height:460px; transform:none;}
+    .about-art{width:100%; max-width:520px; min-height:460px;}
+    .photo-about img{min-height:460px;}
+    .about-copy{padding:0;}
+  }
+  @media(max-width:600px){
+    .hero h1{font-size:54px;}
+    .product-art{height:300px;}
+    .newsletter{margin:0 16px 70px;padding:45px 25px;}
+  }
+
+</style>
+</head>
+<body>
+
+<!-- shared svg defs -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="logomark" viewBox="0 0 100 100"><path d="M18 82 L44 18 L50 34 L34 58 L70 58 L78 82 Z" fill="currentColor"/></symbol>
+    <symbol id="tee" viewBox="0 0 200 220"><path d="M60 10 L100 28 L140 10 L175 40 L150 68 L135 56 L135 210 L65 210 L65 56 L50 68 L25 40 Z" fill="currentColor"/></symbol>
+    <symbol id="hoodie" viewBox="0 0 200 230"><path d="M100 8 C70 8 55 26 52 42 L18 55 L38 88 L52 80 L52 222 L148 222 L148 80 L162 88 L182 55 L148 42 C145 26 130 8 100 8 Z" fill="currentColor"/><path d="M78 40 Q100 62 122 40" stroke="rgba(0,0,0,.25)" stroke-width="4" fill="none"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9C.5 8 2 4 6 4c2 0 3.5 1 6 3.5C14.5 5 16 4 18 4c4 0 5.5 4 3.5 8-2.5 4.5-9.5 9-9.5 9z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="icon-bag" viewBox="0 0 24 24"><path d="M6 8h12l-1 13H7L6 8z" stroke="currentColor" stroke-width="2" fill="none"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
+    <symbol id="icon-truck" viewBox="0 0 24 24"><path d="M1 5h13v10H1z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 9h4l4 4v2h-8V9z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="5.5" cy="18" r="1.8" fill="currentColor"/><circle cx="17.5" cy="18" r="1.8" fill="currentColor"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .8-5.2 4.9 1.4 6.9L12 17.8 5.8 21.1l1.4-6.9L2 9.3l7-.8z" fill="currentColor"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="icon-local" viewBox="0 0 24 24"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9" r="2.4" fill="currentColor"/></symbol>
+    <pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.2" fill="rgba(255,255,255,.14)"/></pattern>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="brand"><img class="brand-logo-img" src="urban-threads-logo.jpg" alt="Urban Threads logo"><div class="word">URBAN THREADS</div></div>
+  <nav class="nav-links">
+    <a href="#home">Home</a><a href="#collection">Collection</a><a href="#about">About</a><a href="#marketing">Marketing</a><a href="#contact">Contact</a>
+  </nav>
+  <div class="nav-actions">
+    <svg class="icon-btn"><use href="#icon-search"/></svg>
+    <svg class="icon-btn"><use href="#icon-heart"/></svg>
+    <div class="icon-btn" onclick="toggleCart(true)"><svg style="width:20px;height:20px;"><use href="#icon-bag"/></svg><span class="cart-count" id="cartCount">0</span></div>
+    <button id="authBtn" class="btn-outline" onclick="handleAuthButton()">LOGIN / REGISTER</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+
+  <div class="hero-copy">
+    <div class="hero-eyebrow">Urban Threads 2026 Collection</div>
+    <h1>Back to <span class="accent">School</span></h1>
+    <p class="hero-sub">New semester, new energy. Streetwear tees built for campus days, weekend plans, and everything after the bell rings.</p>
+    <a href="#collection" class="btn-primary">Shop the Collection →</a>
+    <div class="scroll-hint">SCROLL TO EXPLORE ↓</div>
+  </div>
+  <div class="hero-art photo-hero">
+      <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1200&q=85" alt="Urban streetwear fashion collection">
+      <div class="photo-label">NEW DROP / 2026</div>
+    </div>
+  </section>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="feature"><svg class="icon"><use href="#icon-truck"/></svg><h3>Fast & reliable shipping</h3><p>Orders packed and out the door within 24 hours.</p></div>
+  <div class="feature"><svg class="icon"><use href="#icon-shield"/></svg><h3>Premium quality</h3><p>Heavyweight cotton built to survive a full semester.</p></div>
+  <div class="feature"><svg class="icon"><use href="#icon-star"/></svg><h3>Trendy designs</h3><p>Fresh drops made for your next chapter.</p></div>
+  <div class="feature"><svg class="icon"><use href="#icon-local"/></svg><h3>Support local</h3><p>Designed and printed by a small local studio.</p></div>
+</div>
+
+<!-- COLLECTION -->
+<section id="collection" class="section">
+  <div class="wrap">
+    <div class="section-tag">01 / COLLECTION</div>
+    <h2 class="section-title">Find Your <span class="accent">Fit.</span></h2>
+    <p class="section-desc">Street-ready pieces designed for class, weekends, and everything in between.</p>
+
+    <div class="collection-grid">
+
+      <div class="product-card">
+        <div class="product-art"><span class="badge new">NEW</span>
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85" alt="Rise Up Tee" loading="lazy">
+        </div>
+        <div class="product-info">
+          <h3>Rise Up Tee</h3><div class="color">Black</div>
+          <div class="price">₱799</div>
+          <div class="product-actions">
+            <div class="btn-mini-outline" onclick="requireLogin()">BUY NOW</div>
+            <div class="btn-mini-primary" onclick="openSize('Rise Up Tee','₱799')">ADD TO CART</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-art"><span class="badge best">BESTSELLER</span>
+          <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=700&q=85" alt="Good Things Tee" loading="lazy">
+        </div>
+        <div class="product-info">
+          <h3>Good Things Tee</h3><div class="color">White</div>
+          <div class="price">₱749</div>
+          <div class="product-actions">
+            <div class="btn-mini-outline" onclick="requireLogin()">BUY NOW</div>
+            <div class="btn-mini-primary" onclick="openSize('Good Things Tee','₱749')">ADD TO CART</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-art"><span class="badge new">NEW</span>
+          <img src="https://images.unsplash.com/photo-1506629905607-d9b1c2f2b5f8?auto=format&fit=crop&w=700&q=85" alt="Better Days Tee" loading="lazy">
+        </div>
+        <div class="product-info">
+          <h3>Better Days Tee</h3><div class="color">Blue</div>
+          <div class="price">₱799</div>
+          <div class="product-actions">
+            <div class="btn-mini-outline" onclick="requireLogin()">BUY NOW</div>
+            <div class="btn-mini-primary" onclick="openSize('Better Days Tee','₱799')">ADD TO CART</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-art"><span class="badge limited">LIMITED</span>
+          <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=85" alt="Campus Mode Tee" loading="lazy">
+        </div>
+        <div class="product-info">
+          <h3>Campus Mode Tee</h3><div class="color">Forest Green</div>
+          <div class="price">₱749</div>
+          <div class="product-actions">
+            <div class="btn-mini-outline" onclick="requireLogin()">BUY NOW</div>
+            <div class="btn-mini-primary" onclick="openSize('Campus Mode Tee','₱749')">ADD TO CART</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section about wrap">
+  <div class="about-art photo-about">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85" alt="Urban Threads streetwear lifestyle" loading="lazy">
+      <div class="about-stamp">LOCAL<br>STREETWEAR</div>
+    </div>
+  <div class="about-copy">
+    <div class="section-tag">02 / ABOUT URBAN THREADS</div>
+    <h2 class="section-title">Wear Your <span class="accent">Story.</span></h2>
+    <p>Urban Threads is a local streetwear label built for students and young creatives who want their clothes to say something.</p>
+    <p>From the classroom to the sidewalk, every drop is made to keep you comfortable, confident, and ready for whatever the semester throws at you.</p>
+    <a href="#contact" class="link-cta">Learn More →</a>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="section-tag">YOUR NEXT FIT STARTS HERE.</div>
+  <h2>Ready For <span class="accent">School?</span></h2>
+  <a href="#collection" class="btn-primary">Shop Now →</a>
+</section>
+
+<!-- MARKETING -->
+<section id="marketing" class="section">
+  <div class="wrap">
+    <div class="section-tag">03 / MARKETING MATERIALS</div>
+    <h2 class="section-title">Urban Threads <span class="accent">Campaigns.</span></h2>
+    <p class="section-desc">The official marketing set for the Back-to-School collection. Open a card to view each finished design.</p>
+    <div class="marketing-grid">
+      <a class="marketing-card" href="social-media-post.jpg" target="_blank">
+        <img class="deliverable-thumb" src="social-media-post.jpg" alt="Urban Threads Back to School social media post">
+        <div class="deliverable-body">
+          <div class="num">01 / SOCIAL MEDIA POST</div>
+          <h3>Back to School Post</h3>
+          <p>Promotional social media creative for the Urban Threads Back-to-School campaign.</p>
+          <div class="dims">784 × 1168 PX</div>
+          <div class="view">VIEW FULL DESIGN →</div>
+        </div>
+      </a>
+
+      <a class="marketing-card" href="banner-ad.jpg" target="_blank">
+        <img class="deliverable-thumb" src="banner-ad.jpg" alt="Urban Threads Shop the Drop banner ad">
+        <div class="deliverable-body">
+          <div class="num">02 / BANNER AD</div>
+          <h3>Shop the Drop</h3>
+          <p>Back-to-school promotional banner featuring the new drop and student deals.</p>
+          <div class="dims">784 × 1168 PX</div>
+          <div class="view">VIEW FULL DESIGN →</div>
+        </div>
+      </a>
+
+      <a class="marketing-card" href="newsletter-header.jpg" target="_blank">
+        <img class="deliverable-thumb" src="newsletter-header.jpg" alt="Urban Threads New Drop newsletter header">
+        <div class="deliverable-body">
+          <div class="num">03 / NEWSLETTER HEADER</div>
+          <h3>New Drop Header</h3>
+          <p>Wide email header highlighting the Urban Threads new drop, student deals, and shop-now call to action.</p>
+          <div class="dims">1168 × 784 PX</div>
+          <div class="view">VIEW FULL DESIGN →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER / CONTACT -->
+<section id="contact" class="newsletter">
+  <div>
+    <h2>Discounts & Updates</h2>
+    <p>Subscribe with your email for real-time discount alerts, exclusive deals, and new Urban Threads drops.</p>
+  </div>
+  <form class="newsletter-form" onsubmit="subscribe(event)">
+    <input type="email" placeholder="Enter your email" required>
+    <button class="btn-primary" type="submit">Subscribe →</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid wrap">
+    <div class="footer-brand">
+      <svg class="mark" style="width:28px;height:28px;color:var(--lime)"><use href="#logomark"/></svg>
+      <div class="word">URBAN THREADS</div>
+      <p>Fresh fits. Fresh start. Made for your next chapter.</p>
+    </div>
+    <div>
+      <h4>EXPLORE</h4>
+      <ul><li><a href="#home">Home</a></li><li><a href="#collection">Collection</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul>
+    </div>
+    <div>
+      <h4>FOLLOW US</h4>
+      <ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom wrap">
+    DEV KEITHMARK • CS321 VISUAL PROGRAMMING • 3CS5 • GRAPHIC &amp; DESIGN
+  </div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="overlay" id="authOverlay">
+  <div class="modal">
+    <span class="close" onclick="closeOverlay('authOverlay')">×</span>
+    <div id="authLogin">
+      <h2>Welcome <span class="accent">Back.</span></h2>
+      <div class="sub">Log in to shop, save your cart, and access your account.</div>
+      <label>Email</label><input id="loginEmail" class="field" type="email" autocomplete="email" required>
+      <label>Password</label><input id="loginPassword" class="field" type="password" autocomplete="current-password" required>
+      <div id="loginError" style="display:none;color:#ff6b6b;font-size:12px;margin:-6px 0 14px;"></div>
+      <button class="btn-primary" style="width:100%; justify-content:center;" onclick="loginUser()">LOGIN</button>
+      <div class="switch">No account yet? <span onclick="openAuth('register')">REGISTER</span></div>
+    </div>
+    <div id="authRegister" style="display:none;">
+      <h2>Create <span class="accent">Account.</span></h2>
+      <div class="sub">Create your Urban Threads account to start shopping the drop.</div>
+      <label>Name</label><input id="registerName" class="field" type="text" autocomplete="name" required>
+      <label>Email</label><input id="registerEmail" class="field" type="email" autocomplete="email" required>
+      <label>Password</label><input id="registerPassword" class="field" type="password" autocomplete="new-password" required>
+      <label>Confirm Password</label><input id="registerConfirm" class="field" type="password" autocomplete="new-password" required>
+      <div id="registerError" style="display:none;color:#ff6b6b;font-size:12px;margin:-6px 0 14px;"></div>
+      <button class="btn-primary" style="width:100%; justify-content:center;" onclick="registerUser()">CREATE ACCOUNT</button>
+      <div class="switch">Already have an account? <span onclick="openAuth('login')">LOGIN</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SIZE MODAL -->
+<div class="overlay" id="sizeOverlay">
+  <div class="modal">
+    <span class="close" onclick="closeOverlay('sizeOverlay')">×</span>
+    <h2>Select <span class="accent">Size.</span></h2>
+    <div class="sub" id="sizeProductLabel">Choose your shirt size.</div>
+    <div class="size-options" id="sizeOptions">
+      <div class="size-opt" onclick="selectSize(this)">XS</div>
+      <div class="size-opt" onclick="selectSize(this)">S</div>
+      <div class="size-opt" onclick="selectSize(this)">M</div>
+      <div class="size-opt" onclick="selectSize(this)">L</div>
+      <div class="size-opt" onclick="selectSize(this)">XL</div>
+      <div class="size-opt" onclick="selectSize(this)">XXL</div>
+    </div>
+    <button class="btn-primary" style="width:100%; justify-content:center;" onclick="confirmAddToCart()">ADD TO CART</button>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h2 style="font-size:22px;">Your <span class="accent">Cart.</span></h2>
+    <span class="close" onclick="toggleCart(false)">×</span>
+  </div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty">Your cart is empty.</div></div>
+  <div class="cart-total"><span>TOTAL</span><span id="cartTotal">₱0</span></div>
+</div>
+
+<div class="toast" id="toast">Added to cart!</div>
+
+<script>
+  let cart = [];
+  let pendingProduct = null;
+  let selectedSize = null;
+
+  window.addEventListener('DOMContentLoaded', updateAuthButton);
+
+  const USERS_KEY = 'urbanThreadsUsers';
+  const SESSION_KEY = 'urbanThreadsCurrentUser';
+
+  function getUsers(){
+    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || []; }
+    catch(e){ return []; }
+  }
+
+  function getCurrentUser(){
+    try { return JSON.parse(localStorage.getItem(SESSION_KEY)); }
+    catch(e){ return null; }
+  }
+
+  function saveSession(user){
+    localStorage.setItem(SESSION_KEY, JSON.stringify({name:user.name, email:user.email}));
+    updateAuthButton();
+  }
+
+  function openAuth(mode){
+    document.getElementById('authOverlay').classList.add('active');
+    document.getElementById('authLogin').style.display = mode==='login' ? 'block' : 'none';
+    document.getElementById('authRegister').style.display = mode==='register' ? 'block' : 'none';
+    ['loginError','registerError'].forEach(id => {
+      const el=document.getElementById(id); if(el) el.style.display='none';
+    });
+  }
+
+  function closeOverlay(id){ document.getElementById(id).classList.remove('active'); }
+
+  function requireLogin(){
+    if(!getCurrentUser()) openAuth('login');
+  }
+
+  function handleAuthButton(){
+    if(getCurrentUser()){
+      if(confirm('Log out of your Urban Threads account?')){
+        localStorage.removeItem(SESSION_KEY);
+        updateAuthButton();
+        showToast('Logged out successfully.');
+      }
+    } else {
+      openAuth('login');
+    }
+  }
+
+  function updateAuthButton(){
+    const btn=document.getElementById('authBtn');
+    if(!btn) return;
+    const user=getCurrentUser();
+    btn.textContent=user ? 'LOGOUT' : 'LOGIN / REGISTER';
+    btn.title=user ? ('Signed in as '+user.name) : 'Login or register';
+  }
+
+  function registerUser(){
+    const name=document.getElementById('registerName').value.trim();
+    const email=document.getElementById('registerEmail').value.trim().toLowerCase();
+    const password=document.getElementById('registerPassword').value;
+    const confirmPassword=document.getElementById('registerConfirm').value;
+    const error=document.getElementById('registerError');
+    const users=getUsers();
+
+    if(!name || !email || !password || !confirmPassword) return showAuthError(error,'Please complete all fields.');
+    if(!/^\S+@\S+\.\S+$/.test(email)) return showAuthError(error,'Please enter a valid email address.');
+    if(password.length < 6) return showAuthError(error,'Password must be at least 6 characters.');
+    if(password !== confirmPassword) return showAuthError(error,'Passwords do not match.');
+    if(users.some(u => u.email === email)) return showAuthError(error,'An account with this email already exists. Please log in.');
+
+    const user={name,email,password};
+    users.push(user);
+    localStorage.setItem(USERS_KEY,JSON.stringify(users));
+    saveSession(user);
+    closeOverlay('authOverlay');
+    document.getElementById('registerName').value='';
+    document.getElementById('registerEmail').value='';
+    document.getElementById('registerPassword').value='';
+    document.getElementById('registerConfirm').value='';
+    showToast('Account created! Welcome, '+name+'!');
+  }
+
+  function loginUser(){
+    const email=document.getElementById('loginEmail').value.trim().toLowerCase();
+    const password=document.getElementById('loginPassword').value;
+    const error=document.getElementById('loginError');
+    const user=getUsers().find(u => u.email===email && u.password===password);
+
+    if(!user) return showAuthError(error,'Incorrect email or password.');
+    saveSession(user);
+    closeOverlay('authOverlay');
+    document.getElementById('loginPassword').value='';
+    showToast('Welcome back, '+user.name+'!');
+  }
+
+  function showAuthError(el,message){
+    el.textContent=message;
+    el.style.display='block';
+  }
+
+  function openSize(name, price){
+    if(!getCurrentUser()){ openAuth('login'); return; }
+    pendingProduct = {name, price};
+    selectedSize = null;
+    document.getElementById('sizeProductLabel').textContent = 'Choose a size for ' + name + '.';
+    document.querySelectorAll('.size-opt').forEach(el => el.classList.remove('selected'));
+    document.getElementById('sizeOverlay').classList.add('active');
+  }
+  function selectSize(el){
+    document.querySelectorAll('.size-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedSize = el.textContent;
+  }
+  function confirmAddToCart(){
+    if(!pendingProduct) return;
+    if(!selectedSize){ selectedSize = 'M'; }
+    cart.push({...pendingProduct, size:selectedSize});
+    renderCart();
+    closeOverlay('sizeOverlay');
+    showToast('Added to cart!');
+  }
+  function renderCart(){
+    const list = document.getElementById('cartItems');
+    document.getElementById('cartCount').textContent = cart.length;
+    if(cart.length === 0){
+      list.innerHTML = '<div class="cart-empty">Your cart is empty.</div>';
+    } else {
+      list.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=180&q=75" alt="" style="width:44px;height:50px;object-fit:cover;border-radius:6px;">
+          <div><div class="name">${item.name}</div><div class="meta">Size ${item.size} • ${item.price}</div></div>
+        </div>`).join('');
+    }
+    const total = cart.reduce((sum, i) => sum + parseInt(i.price.replace('₱','')), 0);
+    document.getElementById('cartTotal').textContent = '₱' + total;
+  }
+  function toggleCart(open){ document.getElementById('cartDrawer').classList.toggle('active', open); }
+
+  function subscribe(e){
+    e.preventDefault();
+    showToast('Subscribed! Watch your inbox for drops.');
+    e.target.reset();
+  }
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2400);
+  }
+</script>
+</body>
+</html>
